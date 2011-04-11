@@ -181,10 +181,13 @@ class postThread(threading.Thread):
 					})
 
 				jobs.task_done()
+				
 			except Queue.Empty:
-				break	# No more items in the queue
+				# No more items in the queue
+				global stop_threads
+				stop_threads = False
+				break
 			except:
-				self.kill_received = True				
 				print "Something broke in the Thread!", sys.exc_info()[0]
 				raise
 				break

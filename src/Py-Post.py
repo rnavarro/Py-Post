@@ -16,7 +16,7 @@ debug = False
 
 def _rarFiles(compressionLevel, volumeSize):
 	print('Raring...');
-	args = ['rar', 'a', '-v'+str(volumeSize),
+	args = ['rar', 'a', '-ep1', '-v'+str(volumeSize),
 			'-m'+str(compressionLevel),
 			locations['path']+locations['workingDirectory']+os.sep+locations['tld'], locations['path']+locations['tld']];
 	if(debug):
@@ -192,6 +192,8 @@ def main(args):
 	print('Done Posting!\n')
 	
 	print subj+"\n"
+	
+	print "Posted To: "+options.groups
 	
 	if options.genNZB:
 		print('Generating NZB!')
