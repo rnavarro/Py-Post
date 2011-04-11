@@ -80,7 +80,7 @@ def _addParserOptions(parser):
 						help='hostname or IP of the news server')
 	parser.add_option('-p', '--port', type='int', dest='port',
 						help='port number on the news server', default='119')
-	parser.add_option('-c', '--connections', type='int', dest='port',
+	parser.add_option('-c', '--connections', type='int', dest='connections',
 						help='max number of connections to the news server', default='10')
 	parser.add_option('-u', '--username', type='string', dest='username',
 						help='username on the news server')
