@@ -4,6 +4,7 @@ from optparse import OptionParser
 import hashlib
 import time
 import Poster
+import sys
 
 # Global locations variable, this should not change throughout execution!
 locations = {}
@@ -27,7 +28,7 @@ def _rarFiles(compressionLevel, volumeSize):
 
 def _parFiles(percentage=10):
 	print('Paring...');	
-	args = ['par2', 'create', '-r'+str(percentage), '-s307200', '-q',
+	args = ['par2', 'create', '-r'+str(percentage), '-s307200',
 			locations['path']+locations['workingDirectory']+os.sep+'*.rar']
 	if(debug):
 		print(args);
@@ -108,7 +109,7 @@ def _addParserOptions(parser):
 					  help='be verbose', default=False)
 	return None
 
-def main():
+def main(args):
 	version = "Version: 0.5.0 <Apr 10, 2011>"
 	
 	usage = "\nAuthor: Robert Navarro <rnavarro@phiivo.com>\n"
@@ -187,7 +188,7 @@ def main():
 		'fingerprint': options.uniqueFingerprint
 	}
 	print('Posting!')
-	articles = Poster.post(config,fingerprint,locations)
+	articles = Poster.post(args, config,fingerprint,locations)
 	print('Done Posting!\n')
 	
 	print subj+"\n"
@@ -197,4 +198,4 @@ def main():
 		generateNZB(config, articles)
 
 if __name__ == '__main__':
-	main()
+	main(sys.argv)
